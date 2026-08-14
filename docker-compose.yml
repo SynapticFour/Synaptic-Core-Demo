@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        SYNAPTIC_CORE_REF: ${SYNAPTIC_CORE_REF:-5f375d96367c8fe422cc975c13ea7e3ede8fb34e}
+        SYNAPTIC_CORE_REF: ${SYNAPTIC_CORE_REF:-ffbc955cb611bf9bb2ddf7dafe84ab96a0213a79}
     container_name: sc-demo-server
     restart: unless-stopped
     depends_on:

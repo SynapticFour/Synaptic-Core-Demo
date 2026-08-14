@@ -5,7 +5,8 @@ This page is **not a claim sheet**. It records a concrete run of all three Choic
 | Field | Value |
 |-------|--------|
 | **UTC** | `2026-08-14T08:57:15Z` |
-| **Core pin** | [`5f375d9`](https://github.com/SynapticFour/Synaptic-Core/commit/5f375d96367c8fe422cc975c13ea7e3ede8fb34e) |
+| **Core pin (evidence run)** | [`5f375d9`](https://github.com/SynapticFour/Synaptic-Core/commit/5f375d96367c8fe422cc975c13ea7e3ede8fb34e) |
+| **Core pin (CI / PINNED_VERSIONS)** | [`ffbc955`](https://github.com/SynapticFour/Synaptic-Core/commit/ffbc955cb611bf9bb2ddf7dafe84ab96a0213a79) |
 | **Result** | All three demos: **`ok: true`** |
 | **Raw pack** | [`docs/evidence/`](evidence/) |
 

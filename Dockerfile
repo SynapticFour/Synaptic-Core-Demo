@@ -1,7 +1,7 @@
 # Build Synaptic-Core from a pinned GitHub ref with Choice A adapters.
 # SPDX-License-Identifier: Apache-2.0
 
-ARG SYNAPTIC_CORE_REF=5f375d96367c8fe422cc975c13ea7e3ede8fb34e
+ARG SYNAPTIC_CORE_REF=ffbc955cb611bf9bb2ddf7dafe84ab96a0213a79
 ARG RUST_IMAGE=rust:1.91.1-bookworm
 
 FROM ${RUST_IMAGE} AS builder

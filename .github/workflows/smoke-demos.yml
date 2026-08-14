@@ -21,9 +21,10 @@ jobs:
         uses: actions/checkout@v6
         with:
           repository: SynapticFour/Synaptic-Core
-          ref: 5f375d96367c8fe422cc975c13ea7e3ede8fb34e
+          ref: ffbc955cb611bf9bb2ddf7dafe84ab96a0213a79
           path: Synaptic-Core
-          token: ${{ secrets.SF_REPO_READ_TOKEN || github.token }}
+          # Private Core checkout — same PAT pattern as Synaptic-Core-Test.
+          token: ${{ secrets.SF_REPO_READ_TOKEN }}
       - name: Prepare sibling Dockerfile
         run: cp Dockerfile.sibling Synaptic-Core/Dockerfile.sibling
       - name: Start stack

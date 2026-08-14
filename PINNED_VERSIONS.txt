@@ -1,7 +1,7 @@
 # Pins for Synaptic-Core-Demo (Choice A stack).
 # Bump deliberately; see docs/IMAGE-PIN-POLICY.md
 
-Synaptic-Core-ref=5f375d96367c8fe422cc975c13ea7e3ede8fb34e
+Synaptic-Core-ref=ffbc955cb611bf9bb2ddf7dafe84ab96a0213a79
 Synaptic-Core-sibling=../Synaptic-Core
 Synaptic-Core-features=adapter-ga4gh,adapter-stac,adapter-bids
 
