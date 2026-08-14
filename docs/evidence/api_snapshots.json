@@ -128,7 +128,7 @@
     "Name": "Synaptic Core BIDS Adapter"
   },
   "bids_participants": {
-    "backing": "object-metadata DemoStore / fixture projection",
+    "backing": "fixture / DemoStore — not ObjectsService",
     "participants": [
       {
         "age": 25,
