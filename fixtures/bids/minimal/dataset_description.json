@@ -1,0 +1,16 @@
+{
+  "Name": "Synaptic Core BIDS Fixture",
+  "BIDSVersion": "1.10.0",
+  "DatasetType": "raw",
+  "License": "CC0",
+  "Authors": [
+    "Synaptic Four",
+    "Synaptic-Core-Test"
+  ],
+  "GeneratedBy": [
+    {
+      "Name": "synaptic-core-test-fixture",
+      "Version": "0.1.0"
+    }
+  ]
+}

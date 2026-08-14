@@ -1,0 +1,61 @@
+services:
+  synaptic-core-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SYNAPTIC_CORE_REF: ${SYNAPTIC_CORE_REF:-5f375d96367c8fe422cc975c13ea7e3ede8fb34e}
+    container_name: sc-demo-server
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      minio:
+        condition: service_started
+    environment:
+      SC_SERVER_BIND_ADDR: "0.0.0.0:8080"
+      SC_PUBLIC_BASE_URL: "http://127.0.0.1:8080"
+      SC_DATABASE_URL: "postgres://synaptic:synaptic@postgres:5432/synaptic_core"
+      SC_STORAGE_PATH: "/opt/synaptic-core/.sc-data"
+      RUST_LOG: "info"
+    ports:
+      - "8080:8080"
+    volumes:
+      - sc_demo_objects:/opt/synaptic-core/.sc-data
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: sc-demo-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: synaptic
+      POSTGRES_PASSWORD: synaptic
+      POSTGRES_DB: synaptic_core
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U synaptic -d synaptic_core"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    volumes:
+      - sc_demo_postgres:/var/lib/postgresql/data
+
+  minio:
+    image: minio/minio:RELEASE.2025-04-22T22-12-26Z
+    container_name: sc-demo-minio
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - sc_demo_minio:/data
+
+volumes:
+  sc_demo_postgres:
+  sc_demo_minio:
+  sc_demo_objects:

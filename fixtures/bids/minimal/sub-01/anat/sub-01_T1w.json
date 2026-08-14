@@ -1,0 +1,16 @@
+{
+  "Modality": "MR",
+  "MagneticFieldStrength": 3,
+  "Manufacturer": "SynapticFour",
+  "ManufacturersModelName": "fixture",
+  "InstitutionName": "Synaptic Four",
+  "PulseSequenceType": "Gradient Echo",
+  "ScanningSequence": "GR",
+  "SequenceVariant": "SP",
+  "ScanOptions": "RF",
+  "MRAcquisitionType": "3D",
+  "RepetitionTime": 2.0,
+  "EchoTime": 0.003,
+  "FlipAngle": 9,
+  "PhaseEncodingDirection": "j-"
+}

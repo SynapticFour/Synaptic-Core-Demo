@@ -1,0 +1,6 @@
+# CI overlay: Synaptic-Core at ./Synaptic-Core (workflow copies Dockerfile.sibling into it).
+services:
+  synaptic-core-server:
+    build:
+      context: ./Synaptic-Core
+      dockerfile: Dockerfile.sibling

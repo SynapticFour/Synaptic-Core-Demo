@@ -1,0 +1,47 @@
+# Live demos against Synaptic-Core (heavy). Default: workflow_dispatch + main.
+name: smoke-demos
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  demo-all:
+    if: github.actor != 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v6
+      - name: Checkout Synaptic-Core (pinned)
+        uses: actions/checkout@v6
+        with:
+          repository: SynapticFour/Synaptic-Core
+          ref: 5f375d96367c8fe422cc975c13ea7e3ede8fb34e
+          path: Synaptic-Core
+          token: ${{ secrets.SF_REPO_READ_TOKEN || github.token }}
+      - name: Prepare sibling Dockerfile
+        run: cp Dockerfile.sibling Synaptic-Core/Dockerfile.sibling
+      - name: Start stack
+        run: docker compose -f docker-compose.yml -f docker-compose.ci-sibling.yml up --build -d
+      - name: Wait + demos
+        run: |
+          chmod +x scripts/wait-healthy.sh
+          ./scripts/wait-healthy.sh http://127.0.0.1:8080
+          mkdir -p artifacts
+          python3 demo/scenarios/ga4gh_drs_wes.py --out artifacts/ga4gh.json
+          python3 demo/scenarios/stac_eo_search.py --out artifacts/stac.json
+          python3 demo/scenarios/bids_app_qc.py --out artifacts/bids.json
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: demo-artifacts-${{ github.sha }}
+          path: artifacts/*.json
+      - name: Teardown
+        if: always()
+        run: docker compose -f docker-compose.yml -f docker-compose.ci-sibling.yml down -v || true

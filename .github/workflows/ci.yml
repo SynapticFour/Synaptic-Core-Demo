@@ -1,0 +1,25 @@
+# Lightweight checks — no Docker / no Synaptic-Core cold build.
+name: ci
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  smoke-syntax:
+    if: github.actor != 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: CI parity script
+        run: |
+          chmod +x scripts/hooks/ci-check.sh scripts/wait-healthy.sh
+          ./scripts/hooks/ci-check.sh
+      - name: Compose config (pin stack)
+        run: docker compose -f docker-compose.yml config >/dev/null

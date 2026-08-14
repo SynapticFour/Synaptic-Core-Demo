@@ -1,0 +1,5 @@
+Minimal Synaptic-Core-Test BIDS fixture for Stage C bids-validator.
+
+This dataset is intentionally tiny: one subject, one T1w anatomical.
+It exists to gate BIDSVersion alignment and layout conformance, not to
+represent a full neuroimaging study.

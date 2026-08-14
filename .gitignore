@@ -1,0 +1,12 @@
+# Synaptic-Core-Demo
+.DS_Store
+.cache/
+artifacts/
+*.pyc
+__pycache__/
+.venv/
+.env
+.idea/
+.vscode/
+*.log
+Synaptic-Core/

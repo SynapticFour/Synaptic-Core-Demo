@@ -1,0 +1,11 @@
+# Pins for Synaptic-Core-Demo (Choice A stack).
+# Bump deliberately; see docs/IMAGE-PIN-POLICY.md
+
+Synaptic-Core-ref=5f375d96367c8fe422cc975c13ea7e3ede8fb34e
+Synaptic-Core-sibling=../Synaptic-Core
+Synaptic-Core-features=adapter-ga4gh,adapter-stac,adapter-bids
+
+postgres-image=postgres:16-alpine
+minio-image=minio/minio:RELEASE.2025-04-22T22-12-26Z
+rust-builder-image=rust:1.91.1-bookworm
+runtime-image=debian:bookworm-slim

@@ -1,0 +1,17 @@
+# Build sibling Synaptic-Core with Choice A adapters.
+# Build context must be ../Synaptic-Core
+# SPDX-License-Identifier: Apache-2.0
+
+FROM rust:1.91.1-bookworm AS builder
+WORKDIR /app
+COPY . .
+RUN cargo build --release -p synaptic-core-server \
+    --features adapter-ga4gh,adapter-stac,adapter-bids
+
+FROM debian:bookworm-slim AS runtime
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+COPY --from=builder /app/target/release/sc-server /usr/local/bin/sc-server
+ENV SC_SERVER_BIND_ADDR=0.0.0.0:8080
+EXPOSE 8080
+ENTRYPOINT ["/usr/local/bin/sc-server"]

@@ -1,0 +1,6 @@
+# Overlay: build Synaptic-Core from sibling checkout with Choice A features.
+services:
+  synaptic-core-server:
+    build:
+      context: ../Synaptic-Core
+      dockerfile: ../Synaptic-Core-Demo/Dockerfile.sibling
