@@ -18,7 +18,13 @@ RUN cargo build --release -p synaptic-core-server \
     --features adapter-ga4gh,adapter-stac,adapter-bids
 
 FROM debian:bookworm-slim AS runtime
-RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates \
+# docker CLI talks to the host daemon via mounted /var/run/docker.sock (TES/WES tasks).
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates curl \
+    && curl -fsSL https://download.docker.com/linux/static/stable/x86_64/docker-27.5.1.tgz \
+      | tar -xz -C /tmp \
+    && mv /tmp/docker/docker /usr/local/bin/docker \
+    && rm -rf /tmp/docker \
+    && apt-get purge -y curl && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 COPY --from=builder /src/synaptic-core/target/release/sc-server /usr/local/bin/sc-server
 ENV SC_SERVER_BIND_ADDR=0.0.0.0:8080

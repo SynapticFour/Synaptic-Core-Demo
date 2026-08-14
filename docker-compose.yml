@@ -22,6 +22,8 @@ services:
       - "8080:8080"
     volumes:
       - sc_demo_objects:/opt/synaptic-core/.sc-data
+      # Host Docker for TES/WES container tasks (busybox echo demos).
+      - /var/run/docker.sock:/var/run/docker.sock
 
   postgres:
     image: postgres:16-alpine
