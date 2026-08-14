@@ -12,7 +12,7 @@
 | `stac_eo_search` | Catalogue search → item → process task | `/stac`, `/stac/search`, `/stac/collections/.../items`, `/ga4gh/tes` | `make demo-stac` |
 | `bids_app_qc` | BIDS index → BIDS-App-style QC task | `/bids/*`, `/ga4gh/tes` + local fixture | `make demo-bids` |
 
-Artifacts land in `artifacts/*.json` (gitignored).
+Artifacts land in `artifacts/*.json` (gitignored). A committed sample pack from a real run is in [`EVIDENCE.md`](EVIDENCE.md) / [`evidence/`](evidence/).
 
 ## Forbidden claims
 

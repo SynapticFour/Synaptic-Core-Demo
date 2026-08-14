@@ -1,0 +1,11 @@
+{
+  "ran_at_utc": "2026-08-14T08:57:15Z",
+  "synaptic_core_ref": "5f375d96367c8fe422cc975c13ea7e3ede8fb34e",
+  "features": [
+    "adapter-ga4gh",
+    "adapter-stac",
+    "adapter-bids"
+  ],
+  "command": "python3 demo/scenarios/{ga4gh_drs_wes,stac_eo_search,bids_app_qc}.py",
+  "result": "all three demos returned ok=true"
+}

@@ -31,3 +31,7 @@ cat artifacts/stac.json
 ## Limits
 
 No full `stackstac` / `xarray` cube or Planetary Computer SAS tokens — see [COVERAGE.md](../COVERAGE.md).
+
+## Evidence
+
+Recorded run with IDs and API snapshots: [EVIDENCE.md](../EVIDENCE.md).

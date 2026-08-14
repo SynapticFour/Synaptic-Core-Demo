@@ -34,3 +34,7 @@ cat artifacts/ga4gh.json
 ## Limits
 
 See [COVERAGE.md](../COVERAGE.md). Heavy callers (GATK, GIAB) live in Ferrum / Ferrum-GA4GH-Demo territory.
+
+## Evidence
+
+Recorded run with IDs and API snapshots: [EVIDENCE.md](../EVIDENCE.md).

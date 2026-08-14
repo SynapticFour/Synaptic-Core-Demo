@@ -1,0 +1,28 @@
+{
+    "status": "ok",
+    "version": "0.1.0",
+    "sc_specs_version": "1.0.0",
+    "sc_specs_url": "https://github.com/SynapticFour/sc-specs/tree/v1.0.0",
+    "transport": {
+        "requested_mode": "sse",
+        "active_mode": "sse",
+        "fallback_to_http_polling": false,
+        "fallback_mode": "http-polling",
+        "events_sent": 0,
+        "events_dropped": 0,
+        "fallback_count": 0
+    },
+    "adapters": [
+        "ga4gh",
+        "stac",
+        "bids"
+    ],
+    "crates": {
+        "sc-objects": "ok",
+        "sc-provenance": "ok",
+        "sc-query": "ok",
+        "sc-registry": "ok",
+        "sc-tasks": "ok",
+        "sc-workflows": "ok"
+    }
+}

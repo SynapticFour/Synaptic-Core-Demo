@@ -1,0 +1,14 @@
+{
+  "demo": "ga4gh_drs_wes",
+  "drs_id": "01KZZQTS21E7NZPJHX7SB5VA4E",
+  "object_id": "01KZZQTS21E7NZPJHX7SB5VA4E",
+  "ok": true,
+  "story": "DRS object \u2192 TRS tool \u2192 WES run + TES task",
+  "tes_state": "RUNNING",
+  "tes_task_id": "01KZZQTS25EGZZRRKPPJGWHMK1",
+  "tool_id": "01KZZQTS231VBTK7DNG6V8YAEK",
+  "trs_descriptor_type": "CWL",
+  "trs_tool_name": "demo-samtools-echo-1786697835",
+  "wes_run_id": "01KZZQTS24GB1JPJT625PMJ77V",
+  "wes_state": "RUNNING"
+}

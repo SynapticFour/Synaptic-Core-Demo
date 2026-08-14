@@ -9,3 +9,4 @@
 - `demo-bids` — BIDS HTTP index → BIDS-App-style QC task.
 - Pre-commit CI parity, frugal `ci` workflow, optional `smoke-demos` on main.
 - Docs: COVERAGE, ECOSYSTEM, IMAGE-PIN-POLICY, per-domain walkthroughs.
+- Committed evidence pack (`docs/EVIDENCE.md`, `docs/evidence/*`) from a live all-green demo run.

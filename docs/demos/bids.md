@@ -37,3 +37,7 @@ deno run -ERWN jsr:@bids/validator fixtures/bids/minimal
 ## Limits
 
 See [COVERAGE.md](../COVERAGE.md). Swap the busybox QC stub for a real BIDS App image when you are ready to burn CPU/GPU.
+
+## Evidence
+
+Recorded run with IDs and API snapshots: [EVIDENCE.md](../EVIDENCE.md).

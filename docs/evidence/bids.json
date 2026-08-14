@@ -1,0 +1,18 @@
+{
+  "demo": "bids_app_qc",
+  "derivatives_keys": [
+    "derivatives",
+    "pipeline_description"
+  ],
+  "http_bids_version": "1.10.0",
+  "http_name": "Synaptic Core BIDS Adapter",
+  "local_fixture": "fixtures/bids/minimal",
+  "local_subjects": [
+    "sub-01"
+  ],
+  "ok": true,
+  "participants_count": 1,
+  "qc_state": "RUNNING",
+  "qc_task_id": "01KZZQTV2NESTFWK3K0PXBRQ2R",
+  "story": "BIDS index \u2192 BIDS-App-style QC task"
+}

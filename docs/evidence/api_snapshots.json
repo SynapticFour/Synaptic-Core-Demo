@@ -1,0 +1,151 @@
+{
+  "drs_object": {
+    "access_methods": [
+      {
+        "access_url": {
+          "url": "/sc/objects/v1/objects/01KZZQTS21E7NZPJHX7SB5VA4E/stream"
+        },
+        "type": "stream"
+      }
+    ],
+    "checksums": [
+      {
+        "algorithm": "sha256",
+        "value": "aaff1fa33f0beebe1db384c359ea4fb22a88269aac898e61781cd85b30e48b23"
+      }
+    ],
+    "id": "01KZZQTS21E7NZPJHX7SB5VA4E",
+    "mime_type": "text/plain",
+    "name": "demo-reads.fastq.txt",
+    "self_uri": "drs://synaptic-core/01KZZQTS21E7NZPJHX7SB5VA4E",
+    "size": 23
+  },
+  "trs_tool": {
+    "description": "Demo stand-in for a samtools-style CLI tool",
+    "id": "01KZZQTS231VBTK7DNG6V8YAEK",
+    "name": "demo-samtools-echo-1786697835",
+    "organization": "Synaptic Core",
+    "toolclass": {
+      "description": "",
+      "id": "1",
+      "name": "CommandLineTool"
+    },
+    "toolname": "demo-samtools-echo-1786697835",
+    "versions": [
+      {
+        "descriptor": "/ga4gh/trs/v2/tools/01KZZQTS231VBTK7DNG6V8YAEK/versions/1.0.0/CWL/descriptor",
+        "descriptor_type": [
+          "CWL"
+        ],
+        "id": "1.0.0",
+        "name": "1.0.0",
+        "url": "/ga4gh/trs/v2/tools/01KZZQTS231VBTK7DNG6V8YAEK/versions/1.0.0"
+      }
+    ]
+  },
+  "wes_status": {
+    "run_id": "01KZZQTS24GB1JPJT625PMJ77V",
+    "state": "COMPLETE"
+  },
+  "tes_task": {
+    "executors": [
+      {
+        "command": [
+          "echo",
+          "tes-demo-ok"
+        ],
+        "image": "busybox:1.36"
+      }
+    ],
+    "id": "01KZZQTS25EGZZRRKPPJGWHMK1",
+    "name": "busybox:1.36",
+    "resources": {},
+    "state": "RUNNING",
+    "tags": {
+      "backend": "docker"
+    }
+  },
+  "stac_item": {
+    "assets": {
+      "thumbnail": {
+        "href": "https://example.com/demo-item-1.jpg",
+        "roles": [
+          "thumbnail"
+        ],
+        "type": "image/jpeg"
+      }
+    },
+    "bbox": [
+      13.4,
+      52.51,
+      13.41,
+      52.53
+    ],
+    "collection": "demo-eo",
+    "geometry": {
+      "coordinates": [
+        13.405,
+        52.52
+      ],
+      "type": "Point"
+    },
+    "id": "demo-item-1",
+    "links": [
+      {
+        "href": "http://127.0.0.1:18082/stac/collections/demo-eo/items/demo-item-1",
+        "rel": "self",
+        "type": "application/geo+json"
+      },
+      {
+        "href": "http://127.0.0.1:18082/stac/collections/demo-eo",
+        "rel": "collection",
+        "type": "application/json"
+      },
+      {
+        "href": "http://127.0.0.1:18082/stac",
+        "rel": "root",
+        "type": "application/json"
+      }
+    ],
+    "properties": {
+      "datetime": "2026-01-10T12:00:00Z",
+      "title": "Berlin demo item"
+    },
+    "stac_extensions": [],
+    "stac_version": "1.0.0",
+    "type": "Feature"
+  },
+  "bids_dataset_description": {
+    "BIDSVersion": "1.10.0",
+    "DatasetType": "raw",
+    "GeneratedBy": [
+      {
+        "Name": "synaptic-core-adapter-bids",
+        "Version": "0.1.0"
+      }
+    ],
+    "License": "CC-BY-4.0",
+    "Name": "Synaptic Core BIDS Adapter"
+  },
+  "bids_participants": {
+    "backing": "object-metadata DemoStore / fixture projection",
+    "participants": [
+      {
+        "age": 25,
+        "metadata": {
+          "modality": "anat",
+          "subject": "sub-01",
+          "task": "rest"
+        },
+        "object_id": "sc-obj-bids-sub-01",
+        "participant_id": "sub-01",
+        "sex": "F"
+      }
+    ],
+    "schema": [
+      "participant_id",
+      "age",
+      "sex"
+    ]
+  }
+}

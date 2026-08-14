@@ -1,0 +1,13 @@
+{
+  "asset_keys": [
+    "thumbnail"
+  ],
+  "collection": "demo-eo",
+  "demo": "stac_eo_search",
+  "feature_count": 1,
+  "item_datetime": "2026-01-10T12:00:00Z",
+  "item_id": "demo-item-1",
+  "ok": true,
+  "process_task_id": "01KZZQTTXRFJSV78HTHBHX70JK",
+  "story": "STAC search \u2192 Item \u2192 process task"
+}

@@ -10,6 +10,8 @@ This repo shows domain users what Synaptic Core can *do*, not only what it *clai
 | Earth observation | [`demo/scenarios/stac_eo_search.py`](demo/scenarios/stac_eo_search.py) | STAC catalogue search → item assets → lightweight process task (NDVI-style EO path) |
 | Neuroimaging | [`demo/scenarios/bids_app_qc.py`](demo/scenarios/bids_app_qc.py) | BIDS dataset index → **BIDS-App-style** QC summary task (MRIQC analogy, not full fMRIPrep) |
 
+**Proof, not prose:** a recorded run of all three demos (console + JSON + live API snapshots) lives in **[docs/EVIDENCE.md](docs/EVIDENCE.md)** / [`docs/evidence/`](docs/evidence/).
+
 Product: [Synaptic-Core](https://github.com/SynapticFour/Synaptic-Core) · Conformance: [Synaptic-Core-Test](https://github.com/SynapticFour/Synaptic-Core-Test) · Org: [synapticfour.com](https://synapticfour.com)
 
 > **Legal notice:** This README describes technical capabilities for demonstration. It is not legal advice, regulatory certification, or a compliance guarantee. Outcomes depend on operator configuration and organisational controls.
@@ -61,10 +63,12 @@ See [`docs/COVERAGE.md`](docs/COVERAGE.md) for what these demos prove vs forbid.
 
 | Doc | Purpose |
 |-----|---------|
+| **[docs/EVIDENCE.md](docs/EVIDENCE.md)** | **Recorded run** — console + IDs + API snapshots |
 | [docs/demos/ga4gh.md](docs/demos/ga4gh.md) | Genomics walkthrough |
 | [docs/demos/stac.md](docs/demos/stac.md) | EO walkthrough |
 | [docs/demos/bids.md](docs/demos/bids.md) | Neuroimaging walkthrough |
 | [docs/ECOSYSTEM.md](docs/ECOSYSTEM.md) | Synaptic Core stack map |
+| [docs/COVERAGE.md](docs/COVERAGE.md) | What demos prove vs forbid |
 | [docs/IMAGE-PIN-POLICY.md](docs/IMAGE-PIN-POLICY.md) | Image / Core SHA pins |
 | [PINNED_VERSIONS.txt](PINNED_VERSIONS.txt) | Exact pins |
 
