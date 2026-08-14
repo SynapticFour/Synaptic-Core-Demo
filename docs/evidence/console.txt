@@ -1,0 +1,11 @@
+=== demo-ga4gh ===
+PASS ga4gh — WES 01KZZQTS24GB1JPJT625PMJ77V TES 01KZZQTS25EGZZRRKPPJGWHMK1
+wrote artifacts/evidence/ga4gh.json
+
+=== demo-stac ===
+PASS stac — item demo-item-1 task 01KZZQTTXRFJSV78HTHBHX70JK
+wrote artifacts/evidence/stac.json
+
+=== demo-bids ===
+PASS bids — subjects ['sub-01'] task 01KZZQTV2NESTFWK3K0PXBRQ2R
+wrote artifacts/evidence/bids.json

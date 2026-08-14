@@ -35,7 +35,7 @@ PASS bids — subjects ['sub-01'] task 01KZZQTV2NESTFWK3K0PXBRQ2R
 wrote artifacts/evidence/bids.json
 ```
 
-Source: [`evidence/console.log`](evidence/console.log)
+Source: [`evidence/console.txt`](evidence/console.txt)
 
 ---
 
