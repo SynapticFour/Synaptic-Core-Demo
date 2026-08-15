@@ -17,9 +17,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - name: CI parity script
+      - name: CI parity (syntax + unit tests + pin check)
         run: |
           chmod +x scripts/hooks/ci-check.sh scripts/wait-healthy.sh
           ./scripts/hooks/ci-check.sh
       - name: Compose config (pin stack)
-        run: docker compose -f docker-compose.yml config >/dev/null
+        run: |
+          export SYNAPTIC_CORE_REF="$(sed -n 's/^Synaptic-Core-ref=//p' PINNED_VERSIONS.txt)"
+          export POSTGRES_IMAGE="$(sed -n 's/^postgres-image=//p' PINNED_VERSIONS.txt)"
+          docker compose -f docker-compose.yml config >/dev/null

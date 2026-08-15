@@ -1,11 +1,19 @@
 {
-  "ran_at_utc": "2026-08-14T08:57:15Z",
-  "synaptic_core_ref": "5f375d96367c8fe422cc975c13ea7e3ede8fb34e",
+  "ran_at_utc": "2026-08-15T09:54:48Z",
+  "stale": false,
+  "result": "all three demos returned COMPLETE",
+  "command": "make up-sibling && make demo-all && ./scripts/refresh-evidence.sh",
+  "stack": "sibling docker compose --build (not make up-pinned)",
+  "synaptic_core_ref": "ffbc955cb611bf9bb2ddf7dafe84ab96a0213a79",
+  "synaptic_core_workdir": "dirty",
+  "synaptic_core_required_patch": "TES GET reconciles backend status via TaskService::get_task_fresh (docker inspect). Without it, containers Exited(0) while TES GET stays RUNNING and demo-all fails the contract.",
+  "pin_alone_insufficient": true,
+  "sc_specs_version": "1.1.0",
   "features": [
     "adapter-ga4gh",
     "adapter-stac",
     "adapter-bids"
   ],
-  "command": "python3 demo/scenarios/{ga4gh_drs_wes,stac_eo_search,bids_app_qc}.py",
-  "result": "all three demos returned ok=true"
+  "contract": "ok=true only if WES/TES states are COMPLETE",
+  "assert_reports": "pass"
 }

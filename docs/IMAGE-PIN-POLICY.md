@@ -6,14 +6,13 @@
 
 | Context | Rule |
 |---------|------|
-| **Synaptic-Core binary** | Pin SHA in `PINNED_VERSIONS.txt` (`Synaptic-Core-ref`). Sibling `../Synaptic-Core` for live-dev (`make up-sibling`). |
-| **Choice A features** | Always build with `adapter-ga4gh,adapter-stac,adapter-bids`. |
-| **Third-party images** | Pin postgres / minio / rust builder; no `:latest` on proof paths. |
-| **Floating tags** | Forbidden for images that back demo claims. |
+| **Synaptic-Core binary** | SHA in `PINNED_VERSIONS.txt` (`Synaptic-Core-ref`). Makefile exports it. `make up` uses sibling `../Synaptic-Core`. `make up-pinned` clones that SHA (private repo). TES GET reconcile (`get_task_fresh`) is required for `COMPLETE`; bump the pin only after that lands on Core `main`. |
+| **Choice A features** | Always `adapter-ga4gh,adapter-stac,adapter-bids`. |
+| **Third-party images** | Pin postgres / rust builder / busybox / docker CLI (checksums in `PINNED_VERSIONS.txt`). |
+| **Floating tags** | Forbidden for images that back demo claims (`:latest` never). |
+| **Host publish** | API on `127.0.0.1:8080` only. Postgres unpublished. No MinIO. |
 
-## Current pins
-
-See [`PINNED_VERSIONS.txt`](../PINNED_VERSIONS.txt).
+`scripts/hooks/ci-check.sh` fails if Dockerfile / compose SHA or docker CLI checksums drift from `PINNED_VERSIONS.txt`.
 
 ## Review
 

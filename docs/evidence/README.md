@@ -1,13 +1,17 @@
-# Evidence pack (machine-readable)
+# Evidence pack
 
-Committed outputs from a real `make demo-all`-equivalent run.
+Committed outputs are valid **only** when `META.json` has `"stale": false` and
+the JSON states are `COMPLETE`. This pack was captured **2026-08-15** against
+sibling Core `ffbc955…` **plus** TES GET reconcile (`get_task_fresh`). The pin
+alone is not sufficient; see [`../EVIDENCE.md`](../EVIDENCE.md).
+
+Refresh: `make demo-all && ./scripts/refresh-evidence.sh`.
 
 | File | Contents |
 |------|----------|
-| `META.json` | UTC timestamp, Core pin, command |
-| `console.txt` | Verbatim PASS lines |
-| `health.json` | `/sc/health` with Choice A adapters |
-| `ga4gh.json` / `stac.json` / `bids.json` | Per-demo reports (`ok: true`) |
-| `api_snapshots.json` | Follow-up GETs (DRS, TRS, WES, TES, STAC Item, BIDS) |
-
-Human narrative: [`../EVIDENCE.md`](../EVIDENCE.md).
+| `META.json` | UTC, Core SHA, dirty/patch note, `stale` flag |
+| `health.json` | `/sc/health` |
+| `ga4gh.json` / `stac.json` / `bids.json` | Fail-closed demo reports |
+| `api_snapshots.json` | Follow-up GETs (same IDs, same session) |
+| `console.txt` | `make demo-all` PASS lines |
+| `ran_at_utc.txt` | Stamp |

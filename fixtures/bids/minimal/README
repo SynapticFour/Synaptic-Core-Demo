@@ -1,5 +1,5 @@
-Minimal Synaptic-Core-Test BIDS fixture for Stage C bids-validator.
+Minimal BIDS layout for ingest + optional bids-validator.
 
-This dataset is intentionally tiny: one subject, one T1w anatomical.
-It exists to gate BIDSVersion alignment and layout conformance, not to
-represent a full neuroimaging study.
+One subject, stub 1×1×1 T1w. Not a neuroimaging study. The HTTP
+`/bids/dataset_description` from Core is a separate DemoStore document;
+this fixture is the ingest source for `/bids/participants`.

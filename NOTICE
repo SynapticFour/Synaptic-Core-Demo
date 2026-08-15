@@ -1,0 +1,10 @@
+Apache License 2.0 applies to the contents of this repository (demo glue,
+fixtures, and documentation).
+
+Runtime: `make up-sibling` / `make up-pinned` builds Synaptic Core from
+https://github.com/SynapticFour/Synaptic-Core, which is licensed under
+Business Source License 1.1 (BUSL-1.1), not Apache-2.0. Redistributing a
+built image includes that Core binary under BUSL-1.1.
+
+Third-party images (PostgreSQL, Debian, Rust, busybox, Docker CLI) remain
+under their upstream licenses.

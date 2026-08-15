@@ -2,7 +2,7 @@ repos:
   - repo: local
     hooks:
       - id: ci-parity
-        name: GitHub CI parity (compileall + bash -n)
+        name: GitHub CI parity (unittest + pins + bash -n)
         entry: scripts/hooks/ci-check.sh
         language: script
         pass_filenames: false

@@ -1,189 +1,107 @@
-# Evidence — demos actually ran
+# Evidence — recorded COMPLETE run (2026-08-15)
 
-This page is **not a claim sheet**. It records a concrete run of all three Choice A demos against a live Synaptic Core with `adapter-ga4gh`, `adapter-stac`, and `adapter-bids`.
+This page is both the **contract** and the **last recorded proof**. IDs below
+come from [`docs/evidence/`](evidence/) written in the same session as
+`make demo-all`. They are not later GETs cherry-picked after a `RUNNING` report.
+
+A run counts as evidence only if:
+
+1. `make demo-all` exits 0.
+2. `ga4gh.json` has `wes_state` and `tes_state` equal to `COMPLETE`.
+3. `stac.json` has `process_state` equal to `COMPLETE`.
+4. `bids.json` has `qc_state` equal to `COMPLETE` and
+   `http_participants_backing` equal to `ObjectsService`.
+5. `scripts/assert-reports.py` agrees.
+6. `docs/evidence/META.json` has `"stale": false`.
+
+HTTP 201 + `RUNNING` is a **failure**. Do not copy a later GET into the narrative.
+
+## This pack
 
 | Field | Value |
 |-------|--------|
-| **UTC** | `2026-08-14T08:57:15Z` |
-| **Core pin (evidence run)** | [`5f375d9`](https://github.com/SynapticFour/Synaptic-Core/commit/5f375d96367c8fe422cc975c13ea7e3ede8fb34e) |
-| **Core pin (CI / PINNED_VERSIONS)** | [`ffbc955`](https://github.com/SynapticFour/Synaptic-Core/commit/ffbc955cb611bf9bb2ddf7dafe84ab96a0213a79) |
-| **Result** | All three demos: **`ok: true`** |
-| **Raw pack** | [`docs/evidence/`](evidence/) |
+| UTC | `2026-08-15T09:54:48Z` |
+| Host API | `http://127.0.0.1:8080` |
+| Health | `status=ok`, adapters `ga4gh,stac,bids`, `sc_specs_version` **1.1.0** |
+| Core tree | `ffbc955cb611bf9bb2ddf7dafe84ab96a0213a79` **plus uncommitted TES GET reconcile** |
+| Compute | pinned `busybox:1.36` echo (not samtools / NDVI / MRIQC) |
+| Assert | `scripts/assert-reports.py` pass on the three reports |
 
-Reproduce anytime:
+**Core requirement:** TES `GET /ga4gh/tes/v1/tasks/{id}` must call
+`TaskService::get_task_fresh` (docker inspect + persist COMPLETE). WES already
+waited on inspect; TES GET used to return the DB row only, so containers could
+be `Exited (0)` while TES stayed `RUNNING` until process restart. That patch
+is in the sibling working tree (`crates/synaptic-core-tasks`,
+`crates/synaptic-core-gateway`) and is **not** in the published pin yet.
+`make up-pinned` against `PINNED_VERSIONS.txt` (`ffbc955…`) will **not**
+reproduce this pack.
+
+Machine files: [`evidence/META.json`](evidence/META.json) ·
+[`evidence/health.json`](evidence/health.json) ·
+[`evidence/ga4gh.json`](evidence/ga4gh.json) ·
+[`evidence/stac.json`](evidence/stac.json) ·
+[`evidence/bids.json`](evidence/bids.json) ·
+[`evidence/api_snapshots.json`](evidence/api_snapshots.json).
+
+## GA4GH
+
+Claim: ingest → DRS resolve → TRS register echo tool → WES + TES **COMPLETE**.
+Not claimed: samtools / GATK / Dockstore.
+
+| What | ID / value | State |
+|------|------------|--------|
+| DRS object | `01M02DEBT90KTJCPFSC9PY7CSS` (`demo-reads.fastq.txt`, 23 bytes) | GET 200, stream access_method |
+| TRS tool | `01M02DECJRN7XFDR6C4A06Z7PH` (`sc-demo-echo-1786787607`) | GET 200 |
+| WES run | `01M02DECPC2TNJ9ZESKRCMJKJD` | **COMPLETE** (status + run GET) |
+| WES `workflow_url` | TRS CWL descriptor of that tool | stored; Core runs `steps`, not the CWL file |
+| TES task | `01M02DEQMV6KCSQ6SE56ZGYQ86` | **COMPLETE**, image `busybox:1.36`, `echo tes-demo-ok` |
+
+Same IDs in the report JSON and in the follow-up GETs in `api_snapshots.json`.
+
+## STAC
+
+Claim: fixture `demo-eo` / `example.com` distinguished from a live Feature
+projected from ObjectsService; TES **COMPLETE**. Not claimed: NDVI / stackstac.
+
+| What | Value |
+|------|--------|
+| During demo, fixture item | `demo-item-1`, thumbnail `https://example.com/demo-item-1.jpg` |
+| After ingest, catalog | `/stac` `synaptic:backing` = **ObjectsService** |
+| Live item | `sc-demo-live` / `sc-demo-live-1` |
+| Live object | `01M02DF0RSGR697CPY6994KY1G` (asset href under `/sc/objects/…/stream`) |
+| Process TES | `01M02DF0Z1CTZ0A37M01F40DGW` **COMPLETE** |
+
+Post-run honesty: `GET /stac/collections/demo-eo/items/demo-item-1` is **404**
+once the catalog is live ObjectsService. The fixture thumbnail is recorded in
+`stac.json` from the search **before** ingest, not from a later item GET.
+
+## BIDS
+
+Claim: fixture TSV ingested; `/bids/participants` is ObjectsService with the
+same subject/age/sex; TES **COMPLETE**. Not claimed: MRIQC / fMRIPrep.
+
+| What | Value |
+|------|--------|
+| On-disk fixture | `fixtures/bids/minimal` (`Name`: Synaptic Core BIDS Fixture, `sub-01`) |
+| HTTP `dataset_description` | still Core DemoStore (`Name`: Synaptic Core BIDS Adapter, `demo=true`) |
+| HTTP `participants` | `backing=ObjectsService`, `demo=false` |
+| Live row | `participant_id=sub-01`, `age=30`, `sex=M`, `object_id=01M02DFBPQJR46YW5PN7V21ECB` |
+| QC TES | `01M02DFC2005D0JYCCPQZPSZTQ` **COMPLETE** |
+
+## Refresh
 
 ```bash
-make up-sibling    # or point SC_BASE_URL at any Choice A Core
+make up-sibling    # requires ../Synaptic-Core including TES GET reconcile
 make demo-all
-# fresh outputs land in artifacts/ (gitignored)
+./scripts/refresh-evidence.sh
 ```
 
----
+`make evidence` re-runs `demo-all` then the same copy. Do not point
+`synaptic_core_ref` at a SHA that cannot reach COMPLETE.
 
-## Console (verbatim)
+CI uploads `artifacts/*.json` from `smoke-demos`. Those files are the live
+proof for a SHA. Committed `docs/evidence/*` is only valid when `stale` is
+false and the JSON states match this page.
 
-```text
-=== demo-ga4gh ===
-PASS ga4gh — WES 01KZZQTS24GB1JPJT625PMJ77V TES 01KZZQTS25EGZZRRKPPJGWHMK1
-wrote artifacts/evidence/ga4gh.json
-
-=== demo-stac ===
-PASS stac — item demo-item-1 task 01KZZQTTXRFJSV78HTHBHX70JK
-wrote artifacts/evidence/stac.json
-
-=== demo-bids ===
-PASS bids — subjects ['sub-01'] task 01KZZQTV2NESTFWK3K0PXBRQ2R
-wrote artifacts/evidence/bids.json
-```
-
-Source: [`evidence/console.txt`](evidence/console.txt)
-
----
-
-## Health — Choice A adapters present
-
-```json
-{
-  "status": "ok",
-  "adapters": ["ga4gh", "stac", "bids"],
-  "crates": {
-    "sc-objects": "ok",
-    "sc-tasks": "ok",
-    "sc-workflows": "ok",
-    "sc-registry": "ok",
-    "sc-query": "ok",
-    "sc-provenance": "ok"
-  }
-}
-```
-
-Full file: [`evidence/health.json`](evidence/health.json)
-
----
-
-## 1) Genomics (GA4GH) — DRS → TRS → WES + TES
-
-**Story:** ingest a tiny reads file → resolve via DRS → register a tool → fetch TRS descriptor → submit WES run → submit TES task.
-
-| Step | Evidence ID |
-|------|-------------|
-| Object / DRS | `01KZZQTS21E7NZPJHX7SB5VA4E` |
-| TRS tool | `01KZZQTS231VBTK7DNG6V8YAEK` (`demo-samtools-echo-…`) |
-| WES run | `01KZZQTS24GB1JPJT625PMJ77V` → snapshot state **`COMPLETE`** |
-| TES task | `01KZZQTS25EGZZRRKPPJGWHMK1` |
-
-DRS object (live GET after demo):
-
-```json
-{
-  "id": "01KZZQTS21E7NZPJHX7SB5VA4E",
-  "name": "demo-reads.fastq.txt",
-  "size": 23,
-  "self_uri": "drs://synaptic-core/01KZZQTS21E7NZPJHX7SB5VA4E",
-  "access_methods": [
-    {
-      "type": "stream",
-      "access_url": {
-        "url": "/sc/objects/v1/objects/01KZZQTS21E7NZPJHX7SB5VA4E/stream"
-      }
-    }
-  ]
-}
-```
-
-WES status snapshot:
-
-```json
-{
-  "run_id": "01KZZQTS24GB1JPJT625PMJ77V",
-  "state": "COMPLETE"
-}
-```
-
-Reports: [`evidence/ga4gh.json`](evidence/ga4gh.json) · API snaps: [`evidence/api_snapshots.json`](evidence/api_snapshots.json)
-
-Walkthrough for domain readers: [`demos/ga4gh.md`](demos/ga4gh.md)
-
----
-
-## 2) Earth observation (STAC) — search → Item → process
-
-**Story:** STAC landing/search over `demo-eo` (Berlin-ish bbox) → fetch Item → enqueue EO summary TES task.
-
-| Step | Evidence |
-|------|----------|
-| Collection | `demo-eo` |
-| Item | `demo-item-1` @ `2026-01-10T12:00:00Z` |
-| Assets | `thumbnail` |
-| Process task | `01KZZQTTXRFJSV78HTHBHX70JK` |
-
-Item geometry (live GET):
-
-```json
-{
-  "type": "Feature",
-  "id": "demo-item-1",
-  "collection": "demo-eo",
-  "geometry": { "type": "Point", "coordinates": [13.405, 52.52] },
-  "properties": {
-    "datetime": "2026-01-10T12:00:00Z",
-    "title": "Berlin demo item"
-  }
-}
-```
-
-Reports: [`evidence/stac.json`](evidence/stac.json) · Walkthrough: [`demos/stac.md`](demos/stac.md)
-
----
-
-## 3) Neuroimaging (BIDS) — index → BIDS-App-style QC
-
-**Story:** read `/bids/*` HTTP index for a minimal fixture → run a QC-summary TES task (MRIQC *contract*, not full fMRIPrep).
-
-| Step | Evidence |
-|------|----------|
-| Fixture | `fixtures/bids/minimal` (`sub-01`) |
-| HTTP `BIDSVersion` | `1.10.0` |
-| HTTP `Name` | `Synaptic Core BIDS Adapter` |
-| Participants | 1 (`sub-01`) |
-| QC task | `01KZZQTV2NESTFWK3K0PXBRQ2R` |
-
-Participants envelope (live GET):
-
-```json
-{
-  "schema": ["participant_id", "age", "sex"],
-  "participants": [
-    {
-      "participant_id": "sub-01",
-      "age": 25,
-      "sex": "F",
-      "object_id": "sc-obj-bids-sub-01"
-    }
-  ]
-}
-```
-
-Reports: [`evidence/bids.json`](evidence/bids.json) · Walkthrough: [`demos/bids.md`](demos/bids.md)
-
----
-
-## How to refresh this pack
-
-```bash
-# against a running Choice A Core
-export SC_BASE_URL=http://127.0.0.1:8080
-mkdir -p artifacts/evidence docs/evidence
-python3 demo/scenarios/ga4gh_drs_wes.py --out docs/evidence/ga4gh.json
-python3 demo/scenarios/stac_eo_search.py --out docs/evidence/stac.json
-python3 demo/scenarios/bids_app_qc.py --out docs/evidence/bids.json
-# then re-snapshot health + API GETs and update this page
-```
-
-CI may also upload fresh `artifacts/*.json` from the `smoke-demos` workflow when that job runs on `main`.
-
-## Honesty
-
-- IDs and timestamps are from **one** local evidence run; they are not eternal production IDs.
-- TES tasks may still show `RUNNING` at snapshot time if Docker has not finished; WES reached `COMPLETE` in this run.
-- Scope limits remain in [`COVERAGE.md`](COVERAGE.md) — this page proves the demos execute, not that every scientific pipeline is included.
+Walkthroughs: [`demos/ga4gh.md`](demos/ga4gh.md) ·
+[`demos/stac.md`](demos/stac.md) · [`demos/bids.md`](demos/bids.md).

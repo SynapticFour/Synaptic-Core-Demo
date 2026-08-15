@@ -1,151 +1,219 @@
 {
-  "drs_object": {
-    "access_methods": [
-      {
-        "access_url": {
-          "url": "/sc/objects/v1/objects/01KZZQTS21E7NZPJHX7SB5VA4E/stream"
-        },
-        "type": "stream"
+  "captured_immediately_after_demo_all": true,
+  "ga4gh": {
+    "drs": {
+      "http": 200,
+      "path": "/ga4gh/drs/v1/objects/01M02DEBT90KTJCPFSC9PY7CSS",
+      "body": {
+        "id": "01M02DEBT90KTJCPFSC9PY7CSS",
+        "name": "demo-reads.fastq.txt",
+        "size": 23,
+        "mime_type": "text/plain",
+        "self_uri": "drs://synaptic-core/01M02DEBT90KTJCPFSC9PY7CSS",
+        "checksums": [
+          {
+            "algorithm": "sha256",
+            "value": "aaff1fa33f0beebe1db384c359ea4fb22a88269aac898e61781cd85b30e48b23"
+          }
+        ],
+        "access_methods": [
+          {
+            "access_url": {
+              "url": "/sc/objects/v1/objects/01M02DEBT90KTJCPFSC9PY7CSS/stream"
+            },
+            "type": "stream"
+          }
+        ]
       }
-    ],
-    "checksums": [
-      {
-        "algorithm": "sha256",
-        "value": "aaff1fa33f0beebe1db384c359ea4fb22a88269aac898e61781cd85b30e48b23"
-      }
-    ],
-    "id": "01KZZQTS21E7NZPJHX7SB5VA4E",
-    "mime_type": "text/plain",
-    "name": "demo-reads.fastq.txt",
-    "self_uri": "drs://synaptic-core/01KZZQTS21E7NZPJHX7SB5VA4E",
-    "size": 23
-  },
-  "trs_tool": {
-    "description": "Demo stand-in for a samtools-style CLI tool",
-    "id": "01KZZQTS231VBTK7DNG6V8YAEK",
-    "name": "demo-samtools-echo-1786697835",
-    "organization": "Synaptic Core",
-    "toolclass": {
-      "description": "",
-      "id": "1",
-      "name": "CommandLineTool"
     },
-    "toolname": "demo-samtools-echo-1786697835",
-    "versions": [
-      {
-        "descriptor": "/ga4gh/trs/v2/tools/01KZZQTS231VBTK7DNG6V8YAEK/versions/1.0.0/CWL/descriptor",
-        "descriptor_type": [
-          "CWL"
-        ],
-        "id": "1.0.0",
-        "name": "1.0.0",
-        "url": "/ga4gh/trs/v2/tools/01KZZQTS231VBTK7DNG6V8YAEK/versions/1.0.0"
+    "trs": {
+      "http": 200,
+      "path": "/ga4gh/trs/v2/tools/01M02DECJRN7XFDR6C4A06Z7PH",
+      "body": {
+        "id": "01M02DECJRN7XFDR6C4A06Z7PH",
+        "name": "sc-demo-echo-1786787607",
+        "toolname": "sc-demo-echo-1786787607",
+        "organization": "Synaptic Core"
       }
-    ]
-  },
-  "wes_status": {
-    "run_id": "01KZZQTS24GB1JPJT625PMJ77V",
-    "state": "COMPLETE"
-  },
-  "tes_task": {
-    "executors": [
-      {
-        "command": [
-          "echo",
-          "tes-demo-ok"
-        ],
-        "image": "busybox:1.36"
+    },
+    "wes_status": {
+      "http": 200,
+      "path": "/ga4gh/wes/v1/runs/01M02DECPC2TNJ9ZESKRCMJKJD/status",
+      "body": {
+        "run_id": "01M02DECPC2TNJ9ZESKRCMJKJD",
+        "state": "COMPLETE"
       }
-    ],
-    "id": "01KZZQTS25EGZZRRKPPJGWHMK1",
-    "name": "busybox:1.36",
-    "resources": {},
-    "state": "RUNNING",
-    "tags": {
-      "backend": "docker"
+    },
+    "wes_run": {
+      "http": 200,
+      "path": "/ga4gh/wes/v1/runs/01M02DECPC2TNJ9ZESKRCMJKJD",
+      "body": {
+        "run_id": "01M02DECPC2TNJ9ZESKRCMJKJD",
+        "state": "COMPLETE",
+        "workflow_url": "http://127.0.0.1:8080/ga4gh/trs/v2/tools/01M02DECJRN7XFDR6C4A06Z7PH/versions/1.0.0/CWL/descriptor",
+        "workflow_type": "CWL",
+        "task_ids": [
+          "01M02DECVFQV6HFF6KQB51XCKQ"
+        ]
+      }
+    },
+    "tes": {
+      "http": 200,
+      "path": "/ga4gh/tes/v1/tasks/01M02DEQMV6KCSQ6SE56ZGYQ86",
+      "body": {
+        "id": "01M02DEQMV6KCSQ6SE56ZGYQ86",
+        "state": "COMPLETE",
+        "name": "busybox:1.36",
+        "executors": [
+          {
+            "image": "busybox:1.36",
+            "command": [
+              "echo",
+              "tes-demo-ok"
+            ]
+          }
+        ],
+        "tags": {
+          "backend": "docker"
+        },
+        "exit_code": null
+      }
     }
   },
-  "stac_item": {
-    "assets": {
-      "thumbnail": {
-        "href": "https://example.com/demo-item-1.jpg",
-        "roles": [
-          "thumbnail"
+  "stac": {
+    "root_backing": {
+      "http": 200,
+      "path": "/stac",
+      "synaptic:backing": "ObjectsService",
+      "demo": null
+    },
+    "fixture_search_demo_item_1": {
+      "http": 200,
+      "path": "POST /stac/search",
+      "note": "Fixture item GET is 404 after catalog switches to ObjectsService; thumbnail is in stac.json from search before ingest.",
+      "features": []
+    },
+    "live_item": {
+      "http": 200,
+      "path": "/stac/collections/sc-demo-live/items/sc-demo-live-1",
+      "body": {
+        "id": "sc-demo-live-1",
+        "collection": "sc-demo-live",
+        "bbox": [
+          13.4,
+          52.51,
+          13.41,
+          52.53
         ],
-        "type": "image/jpeg"
-      }
-    },
-    "bbox": [
-      13.4,
-      52.51,
-      13.41,
-      52.53
-    ],
-    "collection": "demo-eo",
-    "geometry": {
-      "coordinates": [
-        13.405,
-        52.52
-      ],
-      "type": "Point"
-    },
-    "id": "demo-item-1",
-    "links": [
-      {
-        "href": "http://127.0.0.1:18082/stac/collections/demo-eo/items/demo-item-1",
-        "rel": "self",
-        "type": "application/geo+json"
-      },
-      {
-        "href": "http://127.0.0.1:18082/stac/collections/demo-eo",
-        "rel": "collection",
-        "type": "application/json"
-      },
-      {
-        "href": "http://127.0.0.1:18082/stac",
-        "rel": "root",
-        "type": "application/json"
-      }
-    ],
-    "properties": {
-      "datetime": "2026-01-10T12:00:00Z",
-      "title": "Berlin demo item"
-    },
-    "stac_extensions": [],
-    "stac_version": "1.0.0",
-    "type": "Feature"
-  },
-  "bids_dataset_description": {
-    "BIDSVersion": "1.10.0",
-    "DatasetType": "raw",
-    "GeneratedBy": [
-      {
-        "Name": "synaptic-core-adapter-bids",
-        "Version": "0.1.0"
-      }
-    ],
-    "License": "CC-BY-4.0",
-    "Name": "Synaptic Core BIDS Adapter"
-  },
-  "bids_participants": {
-    "backing": "fixture / DemoStore — not ObjectsService",
-    "participants": [
-      {
-        "age": 25,
-        "metadata": {
-          "modality": "anat",
-          "subject": "sub-01",
-          "task": "rest"
+        "assets": {
+          "object": {
+            "href": "http://127.0.0.1:8080/sc/objects/v1/objects/01M02DF0RSGR697CPY6994KY1G/stream",
+            "roles": [
+              "data"
+            ]
+          }
         },
-        "object_id": "sc-obj-bids-sub-01",
-        "participant_id": "sub-01",
-        "sex": "F"
+        "synaptic:backing": null,
+        "demo": null,
+        "property_keys": [
+          "datetime",
+          "title"
+        ]
       }
-    ],
-    "schema": [
-      "participant_id",
-      "age",
-      "sex"
-    ]
+    },
+    "process_tes": {
+      "http": 200,
+      "path": "/ga4gh/tes/v1/tasks/01M02DF0Z1CTZ0A37M01F40DGW",
+      "body": {
+        "id": "01M02DF0Z1CTZ0A37M01F40DGW",
+        "state": "COMPLETE",
+        "name": "busybox:1.36",
+        "executors": [
+          {
+            "image": "busybox:1.36",
+            "command": [
+              "sh",
+              "-c",
+              "echo stac-live=sc-demo-live-1"
+            ]
+          }
+        ],
+        "tags": {
+          "backend": "docker"
+        },
+        "exit_code": null
+      }
+    }
+  },
+  "bids": {
+    "dataset_description": {
+      "http": 200,
+      "path": "/bids/dataset_description",
+      "body": {
+        "BIDSVersion": "1.10.0",
+        "DatasetType": "raw",
+        "GeneratedBy": [
+          {
+            "Name": "synaptic-core-adapter-bids",
+            "Version": "0.1.0"
+          }
+        ],
+        "License": "CC-BY-4.0",
+        "Name": "Synaptic Core BIDS Adapter",
+        "backing": "fixture / DemoStore \u2014 not ObjectsService",
+        "demo": true
+      }
+    },
+    "participants": {
+      "http": 200,
+      "path": "/bids/participants",
+      "body": {
+        "backing": "ObjectsService",
+        "demo": false,
+        "schema": [
+          "participant_id",
+          "age",
+          "sex"
+        ],
+        "participants": [
+          {
+            "age": 30,
+            "metadata": {
+              "age": 30,
+              "modality": "anat",
+              "sex": "M",
+              "subject": "sub-01",
+              "task": "rest"
+            },
+            "object_id": "01M02DFBPQJR46YW5PN7V21ECB",
+            "participant_id": "sub-01",
+            "sex": "M"
+          }
+        ]
+      }
+    },
+    "qc_tes": {
+      "http": 200,
+      "path": "/ga4gh/tes/v1/tasks/01M02DFC2005D0JYCCPQZPSZTQ",
+      "body": {
+        "id": "01M02DFC2005D0JYCCPQZPSZTQ",
+        "state": "COMPLETE",
+        "name": "busybox:1.36",
+        "executors": [
+          {
+            "image": "busybox:1.36",
+            "command": [
+              "sh",
+              "-c",
+              "echo '{\"app\":\"sc-demo-bids-qc\",\"subject\":\"sub-01\",\"object_id\":\"01M02DFBPQJR46YW5PN7V21ECB\"}'"
+            ]
+          }
+        ],
+        "tags": {
+          "backend": "docker"
+        },
+        "exit_code": null
+      }
+    }
   }
 }

@@ -1,16 +1,24 @@
-# Neuroimaging demo (BIDS)
+# Neuroimaging demo (BIDS APIs)
 
-## Who this is for
+Laptop smoke of BIDS HTTP index after **ingest**. Compute is **busybox echo**, not MRIQC.
 
-Imaging labs that publish **BIDS** datasets and run **BIDS Apps** (MRIQC, fMRIPrep, FreeSurfer wrappers).
+The on-disk fixture (`fixtures/bids/minimal`) is the source of `sub-01` / age / sex. Core `/bids/dataset_description` is a **different** DemoStore document (`demo: true`). The live proof is `/bids/participants` after ingest (`backing: ObjectsService`).
+
+The NIfTI is a 1×1×1 stub (layout + ingest bytes), not a brain volume.
 
 ## Story
 
-1. Use the local minimal BIDS fixture (`fixtures/bids/minimal`) — the same layout `bids-validator` expects.
-2. Read Synaptic Core’s HTTP index: `dataset_description`, `participants`, `derivatives`.
-3. Submit a **BIDS-App-style** TES task that emits a QC summary JSON for the subjects.
+1. Read `participants.tsv` from the fixture.
+2. Assert HTTP `dataset_description` is the Core fixture (not the disk Name).
+3. Ingest the stub NIfTI with BIDS metadata (`subject`, `modality`, `task`, `age`, `sex`).
+4. GET `/bids/participants` — must be live ObjectsService with the same subject/age/sex.
+5. TES echo until **COMPLETE**.
 
-Full fMRIPrep is deliberately not run: multi-GB images and long runtimes obscure the API story. The demo proves the contract labs need: **layout discovery + containerised app over that layout**.
+Optional disk validator (does not test Core):
+
+```bash
+deno run -ERWN jsr:@bids/validator fixtures/bids/minimal
+```
 
 ## Run
 
@@ -20,24 +28,6 @@ make demo-bids
 cat artifacts/bids.json
 ```
 
-Optional Stage C validator (Deno), same as Synaptic-Core-Test:
-
-```bash
-deno run -ERWN jsr:@bids/validator fixtures/bids/minimal
-```
-
-## Map to your work
-
-| Your step | Demo analogue |
-|-----------|---------------|
-| `bids-validator` on disk | Fixture + optional Deno validator |
-| Browse dataset metadata | `/bids/dataset_description`, `/bids/participants` |
-| `docker run … mriqc bids_dir out participant` | TES task with BIDS tags |
-
 ## Limits
 
-See [COVERAGE.md](../COVERAGE.md). Swap the busybox QC stub for a real BIDS App image when you are ready to burn CPU/GPU.
-
-## Evidence
-
-Recorded run with IDs and API snapshots: [EVIDENCE.md](../EVIDENCE.md).
+[`COVERAGE.md`](../COVERAGE.md).

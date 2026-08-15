@@ -13,4 +13,4 @@ We will acknowledge receipt as quickly as possible, triage severity, and coordin
 
 ## Scope and Guarantees
 
-This project is maintained on a best-effort basis. Security documentation and test coverage improve over time, but no absolute security guarantee is provided.
+This project is a local demo harness. The default compose file binds the API to 127.0.0.1 and mounts the host Docker socket so TES/WES can reach COMPLETE. Do not publish that socket or the API on a network. No absolute security guarantee is provided.

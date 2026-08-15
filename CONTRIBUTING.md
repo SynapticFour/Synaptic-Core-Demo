@@ -1,25 +1,35 @@
 # Contributing
 
-Thank you for your interest in contributing to this project.
-
 ## How to contribute
 
-- Open an issue to discuss significant changes before starting implementation.
-- Use focused branches and keep pull requests small and reviewable.
-- Add or update tests for behavior changes.
-- Ensure local linting, formatting, and tests pass before opening a PR.
+- Open an issue before large changes.
+- Use focused branches and small PRs. Do not push proof/evidence edits straight to `main` if a second reader is available.
+- Demo success is **COMPLETE**, not HTTP 2xx. Do not weaken `poll_until_complete`.
+- If a demo fails against `../Synaptic-Core`, treat it as a Core bug until proven otherwise.
+
+## Local gates (must pass before PR)
+
+```bash
+make smoke-syntax    # compileall + unittest + pin consistency
+```
+
+Stack changes:
+
+```bash
+make up-sibling
+make demo-all        # fail-closed; writes artifacts/*.json
+```
+
+CI on every PR runs `make smoke-syntax`. Same-repo PRs also run `smoke-demos` (needs `SF_REPO_READ_TOKEN` to clone private Core).
 
 ## Pull request checklist
 
-- Clear problem statement and motivation
-- Tests added or updated
-- Documentation updated where relevant
-- No unrelated refactors bundled in the same PR
-
-## Code review expectations
-
-We value precise, respectful, and actionable feedback. Please keep discussions technical and reproducible.
+- Problem statement
+- Unit tests for helper changes; live demo for scenario/API changes
+- Docs updated (`COVERAGE.md` if claims change)
+- No unrelated refactors
 
 ## License
 
-By contributing, you agree that your contributions are licensed under this repository's license.
+Contributions are licensed under this repository's Apache-2.0 license.
+The Core binary you run is BUSL-1.1; see NOTICE.

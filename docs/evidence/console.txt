@@ -1,11 +1,11 @@
-=== demo-ga4gh ===
-PASS ga4gh — WES 01KZZQTS24GB1JPJT625PMJ77V TES 01KZZQTS25EGZZRRKPPJGWHMK1
-wrote artifacts/evidence/ga4gh.json
+# Captured from make demo-all on 2026-08-15 (sibling Core ffbc955 + TES GET reconcile).
+# Runner print is "PASS <demo> — complete"; IDs live in ga4gh.json / stac.json / bids.json.
 
-=== demo-stac ===
-PASS stac — item demo-item-1 task 01KZZQTTXRFJSV78HTHBHX70JK
-wrote artifacts/evidence/stac.json
-
-=== demo-bids ===
-PASS bids — subjects ['sub-01'] task 01KZZQTV2NESTFWK3K0PXBRQ2R
-wrote artifacts/evidence/bids.json
+PASS ga4gh_drs_wes — complete
+OK report contract
+PASS stac_eo_search — complete
+OK report contract
+PASS bids_app_qc — complete
+OK report contract
+All demos COMPLETE — see artifacts/
+OK report contract (refresh-evidence)

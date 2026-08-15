@@ -1,8 +1,10 @@
-# Live demos against Synaptic-Core (heavy). Default: workflow_dispatch + main.
+# Live demos against Synaptic-Core (heavy). Same-repo PRs + main + dispatch.
 name: smoke-demos
 
 on:
   push:
+    branches: [main]
+  pull_request:
     branches: [main]
   workflow_dispatch:
 
@@ -12,23 +14,32 @@ concurrency:
 
 jobs:
   demo-all:
-    if: github.actor != 'dependabot[bot]'
+    if: >
+      github.actor != 'dependabot[bot]' &&
+      (github.event_name != 'pull_request' ||
+       github.event.pull_request.head.repo.full_name == github.repository)
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
       - uses: actions/checkout@v6
+      - name: Read Core pin
+        id: pins
+        run: echo "core_ref=$(sed -n 's/^Synaptic-Core-ref=//p' PINNED_VERSIONS.txt)" >> "$GITHUB_OUTPUT"
       - name: Checkout Synaptic-Core (pinned)
         uses: actions/checkout@v6
         with:
           repository: SynapticFour/Synaptic-Core
-          ref: ffbc955cb611bf9bb2ddf7dafe84ab96a0213a79
+          ref: ${{ steps.pins.outputs.core_ref }}
           path: Synaptic-Core
-          # Private Core checkout — same PAT pattern as Synaptic-Core-Test.
+          # Private Core — same PAT as Synaptic-Core-Test. github.token cannot read it.
           token: ${{ secrets.SF_REPO_READ_TOKEN }}
       - name: Prepare sibling Dockerfile
         run: cp Dockerfile.sibling Synaptic-Core/Dockerfile.sibling
       - name: Start stack
-        run: docker compose -f docker-compose.yml -f docker-compose.ci-sibling.yml up --build -d
+        run: |
+          export SYNAPTIC_CORE_REF="${{ steps.pins.outputs.core_ref }}"
+          export POSTGRES_IMAGE="$(sed -n 's/^postgres-image=//p' PINNED_VERSIONS.txt)"
+          docker compose -f docker-compose.yml -f docker-compose.ci-sibling.yml up --build -d
       - name: Wait + demos
         run: |
           chmod +x scripts/wait-healthy.sh
@@ -37,6 +48,7 @@ jobs:
           python3 demo/scenarios/ga4gh_drs_wes.py --out artifacts/ga4gh.json
           python3 demo/scenarios/stac_eo_search.py --out artifacts/stac.json
           python3 demo/scenarios/bids_app_qc.py --out artifacts/bids.json
+          python3 scripts/assert-reports.py artifacts/ga4gh.json artifacts/stac.json artifacts/bids.json
       - name: Upload artifacts
         if: always()
         uses: actions/upload-artifact@v7

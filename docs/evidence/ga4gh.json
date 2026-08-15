@@ -1,14 +1,16 @@
 {
+  "claim": "DRS resolve + TRS register + WES/TES reach COMPLETE with echo stand-in",
   "demo": "ga4gh_drs_wes",
-  "drs_id": "01KZZQTS21E7NZPJHX7SB5VA4E",
-  "object_id": "01KZZQTS21E7NZPJHX7SB5VA4E",
+  "drs_id": "01M02DEBT90KTJCPFSC9PY7CSS",
+  "not_claimed": "samtools/GATK/Dockstore execution",
+  "object_id": "01M02DEBT90KTJCPFSC9PY7CSS",
   "ok": true,
-  "story": "DRS object \u2192 TRS tool \u2192 WES run + TES task",
-  "tes_state": "RUNNING",
-  "tes_task_id": "01KZZQTS25EGZZRRKPPJGWHMK1",
-  "tool_id": "01KZZQTS231VBTK7DNG6V8YAEK",
-  "trs_descriptor_type": "CWL",
-  "trs_tool_name": "demo-samtools-echo-1786697835",
-  "wes_run_id": "01KZZQTS24GB1JPJT625PMJ77V",
-  "wes_state": "RUNNING"
+  "tes_image": "busybox:1.36",
+  "tes_state": "COMPLETE",
+  "tes_task_id": "01M02DEQMV6KCSQ6SE56ZGYQ86",
+  "tool_id": "01M02DECJRN7XFDR6C4A06Z7PH",
+  "trs_tool_name": "sc-demo-echo-1786787607",
+  "wes_run_id": "01M02DECPC2TNJ9ZESKRCMJKJD",
+  "wes_state": "COMPLETE",
+  "wes_workflow_url": "http://127.0.0.1:8080/ga4gh/trs/v2/tools/01M02DECJRN7XFDR6C4A06Z7PH/versions/1.0.0/CWL/descriptor"
 }

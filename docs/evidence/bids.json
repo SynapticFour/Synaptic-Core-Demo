@@ -1,18 +1,24 @@
 {
+  "claim": "fixture TSV ingested; /bids/participants is ObjectsService with same subject/age/sex; TES COMPLETE",
   "demo": "bids_app_qc",
   "derivatives_keys": [
+    "backing",
+    "demo",
     "derivatives",
     "pipeline_description"
   ],
-  "http_bids_version": "1.10.0",
-  "http_name": "Synaptic Core BIDS Adapter",
+  "http_dataset_demo": true,
+  "http_dataset_name": "Synaptic Core BIDS Adapter",
+  "http_participants_backing": "ObjectsService",
+  "http_participants_demo": false,
+  "live_age": 30,
+  "live_sex": "M",
   "local_fixture": "fixtures/bids/minimal",
-  "local_subjects": [
-    "sub-01"
-  ],
+  "local_name": "Synaptic Core BIDS Fixture",
+  "local_subject": "sub-01",
+  "not_claimed": "MRIQC/fMRIPrep/bids-validator as Core",
+  "object_id": "01M02DFBPQJR46YW5PN7V21ECB",
   "ok": true,
-  "participants_count": 1,
-  "qc_state": "RUNNING",
-  "qc_task_id": "01KZZQTV2NESTFWK3K0PXBRQ2R",
-  "story": "BIDS index \u2192 BIDS-App-style QC task"
+  "qc_state": "COMPLETE",
+  "qc_task_id": "01M02DFC2005D0JYCCPQZPSZTQ"
 }

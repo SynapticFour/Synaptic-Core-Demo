@@ -1,11 +1,17 @@
 # Pins for Synaptic-Core-Demo (Choice A stack).
 # Bump deliberately; see docs/IMAGE-PIN-POLICY.md
+# Makefile / CI parse this file. Do not rename keys.
 
+# TES GET reconcile (get_task_fresh) is required for COMPLETE; bump after Core ships it.
 Synaptic-Core-ref=ffbc955cb611bf9bb2ddf7dafe84ab96a0213a79
 Synaptic-Core-sibling=../Synaptic-Core
 Synaptic-Core-features=adapter-ga4gh,adapter-stac,adapter-bids
 
-postgres-image=postgres:16-alpine
-minio-image=minio/minio:RELEASE.2025-04-22T22-12-26Z
+postgres-image=postgres:16.9-alpine
 rust-builder-image=rust:1.91.1-bookworm
 runtime-image=debian:bookworm-slim
+demo-container-image=busybox:1.36
+
+docker-cli-version=27.5.1
+docker-cli-sha256-amd64=4f798b3ee1e0140eab5bf30b0edc4e84f4cdb53255a429dc3bbae9524845d640
+docker-cli-sha256-arm64=e6b53725a73763ab3f988c73f8772eaed429754c1a579db5ff11f21990fd1817

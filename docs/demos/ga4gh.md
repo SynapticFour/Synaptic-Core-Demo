@@ -1,40 +1,23 @@
-# Genomics demo (GA4GH)
+# Genomics demo (GA4GH APIs)
 
-## Who this is for
-
-Bioinformaticians and platform engineers who already know **DRS / WES / TES / TRS** (or the [GA4GH Starter Kit](https://starterkit.ga4gh.org/) cookbooks).
+Laptop smoke of DRS / TRS / WES / TES. Compute is **busybox echo**, not samtools.
 
 ## Story
 
-1. Ingest a small data object into Synaptic Core (`/sc/objects`).
-2. Resolve it with **DRS** (`/ga4gh/drs/v1/objects/{id}`).
-3. Register a CLI tool and fetch it via **TRS** (including a CWL descriptor).
-4. Submit a **WES** run with CWL-shaped steps (same vocabulary as Nextflow/CWL WES tutorials).
-5. Submit a **TES** task for a single-container job.
-
-This is the portable-cloud path labs use when moving from “ssh + docker” to standards-based APIs — without claiming a full GATK Best Practices pipeline.
+1. Ingest a 23-byte stand-in object.
+2. Resolve it with DRS (`access_methods` required).
+3. Register an echo tool; fetch it via TRS including a CWL descriptor.
+4. Submit WES with `workflow_url` = that TRS descriptor URL and `steps` using the same image. Core **does not execute the CWL file**; it runs `steps`. The demo waits until state is **COMPLETE**.
+5. Submit TES echo; wait until **COMPLETE**; assert GET image matches the pin.
 
 ## Run
 
 ```bash
-make up-sibling   # Choice A Core
+make up-sibling
 make demo-ga4gh
-cat artifacts/ga4gh.json
+cat artifacts/ga4gh.json   # wes_state and tes_state must be COMPLETE
 ```
-
-## Map to your work
-
-| Your step | Demo analogue |
-|-----------|---------------|
-| Stage BAM/CRAM in object store | `/sc/objects` ingest → DRS id |
-| Discover tools on Dockstore | TRS list/get + descriptor |
-| Launch CWL/WDL/Nextflow remotely | WES `POST /runs` |
-| Run one container job | TES `POST /tasks` |
 
 ## Limits
 
-See [COVERAGE.md](../COVERAGE.md). Heavy callers (GATK, GIAB) live in Ferrum / Ferrum-GA4GH-Demo territory.
-
-## Evidence
-
-Recorded run with IDs and API snapshots: [EVIDENCE.md](../EVIDENCE.md).
+[`COVERAGE.md`](../COVERAGE.md). Heavy callers live in Ferrum / Ferrum-GA4GH-Demo.

@@ -1,13 +1,17 @@
 {
-  "asset_keys": [
-    "thumbnail"
-  ],
-  "collection": "demo-eo",
+  "claim": "fixture search distinguished from live ObjectsService STAC projection; TES COMPLETE",
   "demo": "stac_eo_search",
-  "feature_count": 1,
-  "item_datetime": "2026-01-10T12:00:00Z",
-  "item_id": "demo-item-1",
+  "fixture_catalog_backing": "fixture",
+  "fixture_catalog_demo": true,
+  "fixture_collection": "demo-eo",
+  "fixture_item_id": "demo-item-1",
+  "fixture_thumbnail": "https://example.com/demo-item-1.jpg",
+  "live_catalog_backing": "ObjectsService",
+  "live_collection": "sc-demo-live",
+  "live_item_id": "sc-demo-live-1",
+  "live_object_id": "01M02DF0RSGR697CPY6994KY1G",
+  "not_claimed": "NDVI/stackstac/Planetary Computer",
   "ok": true,
-  "process_task_id": "01KZZQTTXRFJSV78HTHBHX70JK",
-  "story": "STAC search \u2192 Item \u2192 process task"
+  "process_state": "COMPLETE",
+  "process_task_id": "01M02DF0Z1CTZ0A37M01F40DGW"
 }
