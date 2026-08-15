@@ -1,4 +1,4 @@
-# Captured from make demo-all on 2026-08-15 (sibling Core ffbc955 + TES GET reconcile).
+# Captured from make demo-all on 2026-08-15 (Core 1d48605 TES GET reconcile).
 # Runner print is "PASS <demo> — complete"; IDs live in ga4gh.json / stac.json / bids.json.
 
 PASS ga4gh_drs_wes — complete

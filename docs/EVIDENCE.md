@@ -23,18 +23,16 @@ HTTP 201 + `RUNNING` is a **failure**. Do not copy a later GET into the narrativ
 | UTC | `2026-08-15T09:54:48Z` |
 | Host API | `http://127.0.0.1:8080` |
 | Health | `status=ok`, adapters `ga4gh,stac,bids`, `sc_specs_version` **1.1.0** |
-| Core tree | `ffbc955cb611bf9bb2ddf7dafe84ab96a0213a79` **plus uncommitted TES GET reconcile** |
+| Core tree | `1d4860500195c6b1c8e8f13b9a56fc199d007da5` (TES GET reconcile on `ffbc955`) |
 | Compute | pinned `busybox:1.36` echo (not samtools / NDVI / MRIQC) |
 | Assert | `scripts/assert-reports.py` pass on the three reports |
 
 **Core requirement:** TES `GET /ga4gh/tes/v1/tasks/{id}` must call
 `TaskService::get_task_fresh` (docker inspect + persist COMPLETE). WES already
 waited on inspect; TES GET used to return the DB row only, so containers could
-be `Exited (0)` while TES stayed `RUNNING` until process restart. That patch
-is in the sibling working tree (`crates/synaptic-core-tasks`,
-`crates/synaptic-core-gateway`) and is **not** in the published pin yet.
-`make up-pinned` against `PINNED_VERSIONS.txt` (`ffbc955…`) will **not**
-reproduce this pack.
+be `Exited (0)` while TES stayed `RUNNING` until process restart. That landed
+in Synaptic-Core `1d48605` and is the Demo pin. `make up-pinned` against
+`PINNED_VERSIONS.txt` matches this pack.
 
 Machine files: [`evidence/META.json`](evidence/META.json) ·
 [`evidence/health.json`](evidence/health.json) ·

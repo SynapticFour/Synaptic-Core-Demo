@@ -2,8 +2,8 @@
 
 Committed outputs are valid **only** when `META.json` has `"stale": false` and
 the JSON states are `COMPLETE`. This pack was captured **2026-08-15** against
-sibling Core `ffbc955…` **plus** TES GET reconcile (`get_task_fresh`). The pin
-alone is not sufficient; see [`../EVIDENCE.md`](../EVIDENCE.md).
+sibling Core that is now pin `1d48605` (TES GET reconcile / `get_task_fresh`).
+See [`../EVIDENCE.md`](../EVIDENCE.md).
 
 Refresh: `make demo-all && ./scripts/refresh-evidence.sh`.
 

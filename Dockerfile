@@ -3,7 +3,7 @@
 # make up-pinned clones a PRIVATE repo (SynapticFour/Synaptic-Core).
 # Outsiders: use make up-sibling with a local checkout.
 
-ARG SYNAPTIC_CORE_REF=ffbc955cb611bf9bb2ddf7dafe84ab96a0213a79
+ARG SYNAPTIC_CORE_REF=1d4860500195c6b1c8e8f13b9a56fc199d007da5
 ARG RUST_IMAGE=rust:1.91.1-bookworm
 ARG TARGETARCH
 

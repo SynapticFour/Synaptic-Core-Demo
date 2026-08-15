@@ -12,7 +12,7 @@
 - BIDS demo ingests the fixture and requires live `/bids/participants` ObjectsService backing.
 - STAC demo ingests a live Feature and requires `synaptic:backing=ObjectsService`.
 - GA4GH WES `workflow_url` is the TRS descriptor of the registered echo tool.
-- Evidence pack recorded 2026-08-15: all three demos `COMPLETE` (see `docs/EVIDENCE.md`). Requires sibling Core TES GET reconcile; pin `ffbc955` alone is not enough.
+- Evidence pack recorded 2026-08-15: all three demos `COMPLETE` (see `docs/EVIDENCE.md`). Core pin `1d48605` includes TES GET reconcile.
 - `smoke-demos` runs on same-repo PRs and asserts report COMPLETE via `assert-reports.py`.
 - PR CI runs unit tests, not only `compileall`.
 

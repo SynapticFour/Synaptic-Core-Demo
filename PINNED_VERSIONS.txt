@@ -2,8 +2,8 @@
 # Bump deliberately; see docs/IMAGE-PIN-POLICY.md
 # Makefile / CI parse this file. Do not rename keys.
 
-# TES GET reconcile (get_task_fresh) is required for COMPLETE; bump after Core ships it.
-Synaptic-Core-ref=ffbc955cb611bf9bb2ddf7dafe84ab96a0213a79
+# TES GET reconcile (get_task_fresh) is in this pin (1d48605).
+Synaptic-Core-ref=1d4860500195c6b1c8e8f13b9a56fc199d007da5
 Synaptic-Core-sibling=../Synaptic-Core
 Synaptic-Core-features=adapter-ga4gh,adapter-stac,adapter-bids
 

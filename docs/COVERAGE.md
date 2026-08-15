@@ -28,7 +28,7 @@ Artifacts: `artifacts/*.json` (gitignored). The committed pack is [`docs/EVIDENC
 ## Known Core shapes the demos encode
 
 - WES create requires non-empty `steps`.
-- TES GET must reconcile docker inspect (`get_task_fresh`) or state stays `RUNNING` after `Exited (0)`. That patch is not in pin `ffbc955` yet; this demo’s evidence pack used a dirty sibling tree.
+- TES GET must reconcile docker inspect (`get_task_fresh`) or state stays `RUNNING` after `Exited (0)`. Pin `1d48605` includes that.
 - TES GET returns `executors[0].image` / `command` / `state`; inputs are accepted on create and not echoed on GET.
 - BIDS `dataset_description` is always the adapter fixture; live catalogue is `participants` / `derivatives` after BIDS-shaped ingest.
 - STAC fixture item uses `https://example.com/demo-item-1.jpg` until live objects exist.
