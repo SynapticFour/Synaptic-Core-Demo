@@ -1,5 +1,16 @@
 # Synaptic-Core-Demo
 
+> **Development paused (2026-09).** This repository is parked.
+>
+> It is **not Ferrum**, not the GA4GH released join, and not a Synaptic Four product SKU.
+>
+> **What this is:** a fail-closed laptop harness against **private** Synaptic Core.
+> Compute is a pinned `busybox` echo so TES/WES can reach `COMPLETE`. It is not
+> samtools, NDVI, MRIQC, or a scientific pipeline pack. You cannot run it without
+> org access to private Core.
+>
+> Do not treat CI here as Ferrum evidence or as GA4GH certification.
+
 Fail-closed laptop smokes for **Synaptic Core** Choice A adapters: GA4GH, STAC, BIDS.
 
 This repo is a **bug-finding harness**, not a scientific pipeline pack. Each demo
