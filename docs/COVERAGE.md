@@ -19,7 +19,7 @@ Artifacts: `artifacts/*.json` (gitignored). The committed pack is [`docs/EVIDENC
 - Full production genomics pipelines (GATK Best Practices, GIAB truthsets)
 - Full EO science (stackstac NDVI time series, Planetary Computer auth)
 - Full fMRIPrep / FreeSurfer / MRIQC container runs
-- Regulatory certification, clinical clearance, or “GA4GH certified”
+- Regulatory certification or clinical clearance
 - That DemoStore seeds equal production object stores
 - That Core WES executes `workflows/echo.cwl` (WES requires `steps`; `workflow_url` is stored, not fetched)
 - That TES GET `name` is the client-supplied task name (Core maps `name` to container image)
