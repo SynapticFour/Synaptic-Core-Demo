@@ -1,11 +1,8 @@
 # Synaptic-Core-Demo
 
-Fail-closed laptop smokes for **Synaptic Core** Choice A adapters: GA4GH, STAC, BIDS.
+Laptop checks for **Synaptic Core** adapters: GA4GH, STAC, BIDS.
 
-This repo is a **bug-finding harness**, not a scientific pipeline pack. Each demo
-hits real Core HTTP APIs and **refuses to pass unless TES/WES reach `COMPLETE`**.
-Compute is a pinned `busybox` echo so a laptop can prove lifecycle. It is not
-samtools, NDVI, or MRIQC.
+Each demo talks to real Core HTTP APIs and **passes only when TES/WES reach `COMPLETE`**. Compute is a pinned `busybox` echo so a laptop can prove the lifecycle.
 
 | Domain | Demo | What it actually asserts |
 |--------|------|--------------------------|
