@@ -20,7 +20,7 @@ make up-sibling
 make demo-all        # fail-closed; writes artifacts/*.json
 ```
 
-CI on every PR runs `make smoke-syntax`. Same-repo PRs also run `smoke-demos` (needs `SF_REPO_READ_TOKEN` to clone private Core).
+CI on every PR runs `make smoke-syntax`. Same-repo PRs also run `smoke-demos` (clones public Synaptic-Core at the pin).
 
 ## Pull request checklist
 

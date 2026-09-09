@@ -6,7 +6,7 @@
 
 | Context | Rule |
 |---------|------|
-| **Synaptic-Core binary** | SHA in `PINNED_VERSIONS.txt` (`Synaptic-Core-ref`). Makefile exports it. `make up` uses sibling `../Synaptic-Core`. `make up-pinned` clones that SHA (private repo). Pin includes TES GET reconcile (`get_task_fresh`) required for `COMPLETE`. |
+| **Synaptic-Core binary** | SHA in `PINNED_VERSIONS.txt` (`Synaptic-Core-ref`). Makefile exports it. `make up` uses sibling `../Synaptic-Core`. `make up-pinned` clones that SHA from the public repo. Pin includes TES GET reconcile (`get_task_fresh`) required for `COMPLETE`. |
 | **Choice A features** | Always `adapter-ga4gh,adapter-stac,adapter-bids`. |
 | **Third-party images** | Pin postgres / rust builder / busybox / docker CLI (checksums in `PINNED_VERSIONS.txt`). |
 | **Floating tags** | Forbidden for images that back demo claims (`:latest` never). |

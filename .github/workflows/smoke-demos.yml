@@ -31,8 +31,6 @@ jobs:
           repository: SynapticFour/Synaptic-Core
           ref: ${{ steps.pins.outputs.core_ref }}
           path: Synaptic-Core
-          # Private Core — same PAT as Synaptic-Core-Test. github.token cannot read it.
-          token: ${{ secrets.SF_REPO_READ_TOKEN }}
       - name: Prepare sibling Dockerfile
         run: cp Dockerfile.sibling Synaptic-Core/Dockerfile.sibling
       - name: Start stack

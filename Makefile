@@ -14,7 +14,7 @@ help:
 	@echo "Synaptic-Core-Demo"
 	@echo "  make up           Sibling Core if ../Synaptic-Core exists, else fail"
 	@echo "  make up-sibling   Choice A stack from ../Synaptic-Core"
-	@echo "  make up-pinned    Build from PINNED_VERSIONS Synaptic-Core-ref (private clone)"
+	@echo "  make up-pinned    Build from PINNED_VERSIONS Synaptic-Core-ref (public clone)"
 	@echo "  make down/reset   Stop / wipe volumes"
 	@echo "  make demo-ga4gh   DRS → TRS → WES/TES until COMPLETE"
 	@echo "  make demo-stac    Fixture vs live STAC projection + TES COMPLETE"
@@ -28,7 +28,7 @@ help:
 up:
 	@if [ ! -d ../Synaptic-Core ]; then \
 		echo "ERROR: ../Synaptic-Core missing. Clone Core next to this repo and run make up-sibling,"; \
-		echo "or use make up-pinned if you can read the private Synaptic-Core repo."; \
+		echo "or use make up-pinned to clone the public Synaptic-Core pin."; \
 		exit 1; \
 	fi
 	@$(MAKE) up-sibling

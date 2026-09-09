@@ -10,7 +10,7 @@ Each demo talks to real Core HTTP APIs and **passes only when TES/WES reach `COM
 | Earth observation APIs | [`demo/scenarios/stac_eo_search.py`](demo/scenarios/stac_eo_search.py) | Fixture `demo-eo` vs **live** STAC projection after ingest; TES **COMPLETE** |
 | Neuroimaging APIs | [`demo/scenarios/bids_app_qc.py`](demo/scenarios/bids_app_qc.py) | Fixture TSV ingested; `/bids/participants` is **ObjectsService** with the same subject/age/sex; TES **COMPLETE** |
 
-Product: [Synaptic-Core](https://github.com/SynapticFour/Synaptic-Core) (private, BUSL-1.1) · Conformance: [Synaptic-Core-Test](https://github.com/SynapticFour/Synaptic-Core-Test) · Org: [synapticfour.com](https://synapticfour.com)
+Product: [Synaptic-Core](https://github.com/SynapticFour/Synaptic-Core) (public, BUSL-1.1) · Conformance: [Synaptic-Core-Test](https://github.com/SynapticFour/Synaptic-Core-Test) · Org: [synapticfour.com](https://synapticfour.com)
 
 > **Legal notice:** Demonstration of technical APIs. Not legal advice, certification, or a compliance guarantee. See [NOTICE](NOTICE).
 
@@ -20,7 +20,7 @@ Product: [Synaptic-Core](https://github.com/SynapticFour/Synaptic-Core) (private
 API binds **127.0.0.1:8080** only. TES/WES mount the host Docker socket (local demo only).
 
 ```bash
-# Core must sit next to this repo (private — you need org access)
+# Core must sit next to this repo (public clone)
 git clone https://github.com/SynapticFour/Synaptic-Core.git
 git clone https://github.com/SynapticFour/Synaptic-Core-Demo.git
 cd Synaptic-Core-Demo
@@ -34,12 +34,12 @@ API: http://127.0.0.1:8080 · Health: http://127.0.0.1:8080/sc/health
 | Goal | Command |
 |------|---------|
 | Sibling `../Synaptic-Core` | `make up` / `make up-sibling` |
-| Pinned Core SHA (needs clone access to private Core) | `make up-pinned` |
+| Pinned Core SHA (public clone of Synaptic-Core) | `make up-pinned` |
 | Stop / wipe volumes | `make down` / `make reset` |
 | One demo | `make demo-ga4gh` · `make demo-stac` · `make demo-bids` |
 | Unit tests + pin check | `make smoke-syntax` |
 
-`make up-pinned` git-clones `SynapticFour/Synaptic-Core` **without a token**. If Core stays private, that path fails; use the sibling checkout.
+`make up-pinned` git-clones `SynapticFour/Synaptic-Core` at the SHA in `PINNED_VERSIONS.txt`. A laptop clone does not need an org token. GitHub Actions uses the default `GITHUB_TOKEN` for that public checkout.
 
 ## Honesty
 

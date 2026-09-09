@@ -44,4 +44,4 @@ If a demo fails against current `../Synaptic-Core`, prefer filing/fixing **Synap
 | `ci` | every PR / push | `compileall`, **unittest**, pin consistency, `compose config` |
 | `smoke-demos` | `main`, same-repo PRs, `workflow_dispatch` | sibling Core build + `demo-all` + `assert-reports.py` (COMPLETE) |
 
-`smoke-demos` needs `SF_REPO_READ_TOKEN` because Synaptic-Core is private. Fork PRs skip that job.
+`smoke-demos` clones public Synaptic-Core at the pin. Fork PRs skip that job.
